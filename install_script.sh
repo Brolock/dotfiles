@@ -25,7 +25,7 @@ git clone https://aur.archlinux.org/yay.git
 #! Yay install
 
 sudo pacman -S --noconfirm pamixer alsa-utils \
-	ttf-font-awesome \
+	ttf-jetbrains-mono \
 	python-pip \
 	neovim \
 	git \
