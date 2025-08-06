@@ -1,4 +1,6 @@
 #! /usr/bin/env bash
+
+# NB use iwctl for Wifi on a new machine
 # Run this script as sudo
 if [ "$EUID" -ne 0 ]
     then echo "Please run as root"
@@ -24,5 +26,6 @@ pacman -S --noconfirm pamixer alsa-utils \
 	fzf \
 	fasd \
 	tree \
+	less \
 
 echo "Please logout or restart computer to finalize configuration!"
