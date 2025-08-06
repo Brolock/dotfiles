@@ -1,0 +1,48 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=true
+separator_block_width=15
+
+[publicip]
+command=python3 ip.py
+interval=3600
+color=#ffa7ae
+
+[localip]
+command=echo "$(ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p')"
+interval=once
+color=#def6f8
+
+# Guess the weather hourly
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+
+[disk]
+command=echo "Disk: $(python3 disk.py)%"
+interval=60
+color=#ecdce1
+
+[cpu]
+command=echo "CPU: $(python3 cpu.py)%"
+interval=5
+color=#ecdce1
+
+[memory]
+command=echo "Mem: $(python3 memory.py)%"
+interval=5
+color=#ecdce1
+
+[time]
+command=date '+%A %m-%d %H:%M:%S'
+interval=5
+color=#f3a309
