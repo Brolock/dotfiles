@@ -69,5 +69,10 @@ yay -S --noconfirm xdg-terminal-exec
 
 #! Arch-Update install
 
+# Docker install
+pacman -S --noconfirm docker docker-compose
+sudo usermod -aG docker brolock
+sudo systemctl start docker.service
+#! Docker install
 
 echo "Please logout or restart computer to finalize configuration!"

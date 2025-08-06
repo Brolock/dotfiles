@@ -9,6 +9,7 @@
 # }
 
 bg_bar_color="#282A36"
+bg_separator_previous="#000000"
 
 # Print a left caret separator
 # @params {string} $1 text color, ex: "#FF0000"
@@ -40,7 +41,8 @@ common() {
 
 myip_public() {
   local bg="#1976D2"
-  separator $bg "#FFD180"
+  separator $bg $bg_separator_previous
+  bg_separator_previous=$bg
   echo -n ",{"
   echo -n "\"name\":\"ip_public\","
   echo -n "\"full_text\":\" $($HOME/.config/i3/i3status/ip.py) \","
@@ -52,9 +54,10 @@ myip_public() {
 myip_local() {
   local bg="#2E7D32" # vert
   separator $bg $bg_separator_previous
+  bg_separator_previous=$bg
   echo -n ",{"
   echo -n "\"name\":\"ip_local\","
-  echo -n "\"full_text\":\"  $(ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p') \","
+  echo -n "\"full_text\":\"  $(ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p') \","
   echo -n "\"background\":\"$bg\","
   common
   echo -n "},"
@@ -62,10 +65,11 @@ myip_local() {
 
 disk_usage() {
   local bg="#3949AB"
-  separator $bg "#2E7D32"
+  separator $bg $bg_separator_previous
+  bg_separator_previous=$bg
   echo -n ",{"
   echo -n "\"name\":\"id_disk_usage\","
-  echo -n "\"full_text\":\"  $($HOME/.config/i3/i3status/disk.py)%\","
+  echo -n "\"full_text\":\" Disk $($HOME/.config/i3/i3status/disk.py)%\","
   echo -n "\"background\":\"$bg\","
   common
   echo -n "}"
@@ -74,7 +78,7 @@ disk_usage() {
 memory() {
   echo -n ",{"
   echo -n "\"name\":\"id_memory\","
-  echo -n "\"full_text\":\"  $($HOME/.config/i3/i3status/memory.py)%\","
+  echo -n "\"full_text\":\" Mem $($HOME/.config/i3/i3status/memory.py)%\","
   echo -n "\"background\":\"#3949AB\","
   common
   echo -n "}"
@@ -83,7 +87,7 @@ memory() {
 cpu_usage() {
   echo -n ",{"
   echo -n "\"name\":\"id_cpu_usage\","
-  echo -n "\"full_text\":\"  $($HOME/.config/i3/i3status/cpu.py)% \","
+  echo -n "\"full_text\":\" CPU $($HOME/.config/i3/i3status/cpu.py)% \","
   echo -n "\"background\":\"#3949AB\","
   common
   echo -n "},"
@@ -91,10 +95,10 @@ cpu_usage() {
 
 mydate() {
   local bg="#E0E0E0"
-  separator $bg "#546E7A"
+  separator $bg $bg_separator_previous
   echo -n ",{"
   echo -n "\"name\":\"id_time\","
-  echo -n "\"full_text\":\"  $(date "+%a %d/%m %H:%M") \","
+  echo -n "\"full_text\":\" $(date "+%a %d/%m %H:%M") \","
   echo -n "\"color\":\"#000000\","
   echo -n "\"background\":\"$bg\","
   common
@@ -144,7 +148,7 @@ volume() {
 logout() {
   echo -n ",{"
   echo -n "\"name\":\"id_logout\","
-  echo -n "\"full_text\":\"  \""
+  echo -n "\"full_text\":\" X\""
   echo -n "}"
 }
 
