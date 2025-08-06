@@ -4,6 +4,16 @@ install_script.sh should install all necessary packages for the system to work a
 
 ! install_script.sh must be run as sudo -- Check the script content before running it as it might overwrite your config files with symbolic links
 
+## Notes
+- Update frequently with `pacman -Syu`
+- Use use iwctl for Wifi on a new machine
+```
+device list
+station <your device> scan
+station <your device> get-networks
+station <your device> connect <your wi-fi>
+```
+
 Heavily pulled from https://github.com/Nelyah/dotfiles
 
 TODO:
